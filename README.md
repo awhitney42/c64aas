@@ -4,8 +4,8 @@ Commodore 64 as a Service
 - GET /api/program - LIST the program.
 - POST /api/program - Create a NEW program.
 - _PUT /api/program - Append to the program. (NOT YET IMPLEMENTED)_
-- GET /api/program/<line number> - LIST the specified line number from the program.
-- _PUT /api/program/<line number> - Update the line number in the program. (NOT YET IMPLEMENTED)_
+- GET /api/program/&lt;line number&gt; - LIST the specified line number from the program.
+- _PUT /api/program/&lt;line number&gt; - Update the line number in the program. (NOT YET IMPLEMENTED)_
 - GET /api/run - RUN the program and return the output.
 
 
