@@ -1,0 +1,84 @@
+# swagger.yml
+
+openapi: 3.0.0
+info:
+  title: "C64 As A Service - Flask REST API"
+  description: "An API for Commodore 64 BASIC"
+  version: "1.0.0"
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    Program:
+      type: "object"
+      required:
+        - line
+        - input
+      properties:
+        line:
+          type: "integer"
+        input:
+          type: "string"
+      example:
+        line: 10
+        input: "PRINT \"HELLO WORLD\""
+    ProgramList:
+     type: array
+     items:
+       oneOf:
+       - $ref: "#/components/schemas/Program"
+  parameters:
+    line:
+      name: "line"
+      description: "Program line number"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+paths:
+  /program:
+    get:
+      operationId: "program.read_all"
+      tags:
+        - "Program"
+      summary: "LIST the entire program."
+      responses:
+        "200":
+          description: "Successfully read program LISTing."
+    post:
+      operationId: "program.create"
+      tags:
+        - Program
+      summary: "Create a NEW program."
+      requestBody:
+          description: "Program to create"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "program"
+                $ref: "#/components/schemas/ProgramList"
+      responses:
+        "201":
+          description: "Successfully created program."
+  /program/{line}:
+    get:
+      operationId: "program.read_one"
+      tags:
+        - Program
+      summary: "LIST the specified program line."
+      parameters:
+        - $ref: "#/components/parameters/line"
+      responses:
+        "200":
+          description: "Successfully read program line."
+  /run:
+    get:
+      operationId: "run.read_all"
+      tags:
+        - "Run"
+      summary: "RUN the program and return the output."
+      responses:
+        "200":
+          description: "Program RUN successful."
