@@ -1,17 +1,21 @@
 # c64aas
 Commodore 64 as a Service
 
+## Current API
 - GET /api/program - LIST the program.
 - POST /api/program - Create a NEW program.
-- _PUT /api/program - Append to the program. (NOT YET IMPLEMENTED)_
-- GET /api/program/&lt;line number&gt; - LIST the specified line number from the program.
-- _PUT /api/program/&lt;line number&gt; - Update the line number in the program. (NOT YET IMPLEMENTED)_
+- GET /api/program/&lt;line number&gt; - LIST the specified line number in the program.
 - GET /api/run - RUN the program and return the output.
+
+## Coming Soon
+
+- _PUT /api/program - Append to the program. (NOT YET IMPLEMENTED)_
+- _PUT /api/program/&lt;line number&gt; - Update the line number in the program. (NOT YET IMPLEMENTED)_
 
 
 ## REQUIREMENTS
 
-This requires the cbmbasic program.
+This requires the cbmbasic program to be in the environment path.
 
 - https://github.com/mist64/cbmbasic
 
