@@ -17,9 +17,10 @@ Commodore 64 as a Service
 
 ## REQUIREMENTS
 
-This requires the cbmbasic program to be in the environment path.
-
-- https://github.com/mist64/cbmbasic
+- Python 3+
+- cbmbasic
+  - This requires the cbmbasic program to be in the environment path.
+  - https://github.com/mist64/cbmbasic
 
 ## HOW TO RUN
 
