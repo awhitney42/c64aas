@@ -40,4 +40,3 @@ Run the App.
 
 Navigate to http://localhost:8000 to learn more.
 
-Also check out the c64aas.postman_collection.json Postman collection for more info.
