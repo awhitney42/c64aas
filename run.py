@@ -38,7 +38,7 @@ def read_all():
     #for p in ps:
     #    p.start()
 
-    process=subprocess.Popen(['timeout' ,'60', 'cbmbasic', 'program.bas'], stdout=subprocess.PIPE)
+    process=subprocess.Popen(['timeout' ,'10', 'cbmbasic', 'program.bas'], stdout=subprocess.PIPE)
     out,err = process.communicate()
 
     output_basic = str(out, 'UTF-8')

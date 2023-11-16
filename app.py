@@ -2,10 +2,13 @@
 
 from flask import render_template
 import connexion
+from connexion.resolver import RestyResolver
+from flask_cors import CORS
 
 app = connexion.App(__name__, specification_dir="./")
+CORS(app.app)
 
-app.add_api("swagger.yml")
+app.add_api("swagger.yml" ,resolver=RestyResolver('c64aas'))
 
 @app.route("/")
 def home():
