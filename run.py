@@ -2,9 +2,10 @@
 
 from datetime import datetime
 from flask import abort
+from flask import request
 import subprocess
 import json
-import json2bas
+import basify
 import multiprocessing as mp
 from ctypes import *
 
@@ -30,7 +31,7 @@ def read_all():
     line = ''
 
     # Convert program to BAS file
-    json2bas.json2bas()
+    basify.json2bas()
 
     # Run the cbmbasic ___main___ function in a subprocess.
     #my_args = make_args('main program.bas')
@@ -44,6 +45,9 @@ def read_all():
     output_basic = str(out, 'UTF-8')
 
     output_lines = output_basic.splitlines()
-    output = json.dumps(output_lines)
+    output_json = json.dumps(output_lines)
 
-    return output
+    if (request.headers.get('accept') == "text/plain"):
+        return output_basic
+    else:
+        return output_json

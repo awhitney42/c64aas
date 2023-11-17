@@ -10,7 +10,10 @@ servers:
 
 components:
   schemas:
-    Program:
+    ProgramText:
+      type: string
+      example: "10 PRINT \"HELLO WORLD\""
+    ProgramLine:
       type: "object"
       required:
         - line
@@ -24,10 +27,15 @@ components:
         line: 10
         input: "PRINT \"HELLO WORLD\""
     ProgramList:
-     type: array
-     items:
-       oneOf:
-       - $ref: "#/components/schemas/Program"
+      type: array
+      items:
+        oneOf:
+          - $ref: "#/components/schemas/ProgramLine"
+    RunOutput:
+      type: array
+      items:
+        oneOf:
+          - type: "string"
   parameters:
     line:
       name: "line"
@@ -57,8 +65,11 @@ paths:
           content:
             application/json:
               schema:
-                x-body-name: "program"
                 $ref: "#/components/schemas/ProgramList"
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ProgramText"
+          x-body-name: program
       responses:
         "201":
           description: "Successfully created program."
@@ -82,3 +93,10 @@ paths:
       responses:
         "200":
           description: "Program RUN successful."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunOutput'
+            text/plain:
+              schema:
+                type: "string"

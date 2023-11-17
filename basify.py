@@ -1,6 +1,7 @@
 # json2bas.py
 
 import json
+import re
 
 json_filename = "program.json"
 bas_filename = "program.bas"
@@ -19,4 +20,19 @@ def json2bas():
         ofile.write(str(line) + " " + input + "\n")
     
     ofile.close()
+
+def bas2obj(program):
+
+    PROGRAM = []
+    program_lines = program.splitlines()
+    for l in program_lines:
+        line = re.search(r"\d+ ", l)
+        input = re.sub(r"\d+ ", '', l)
+        element = {
+        	"input": input,
+        	"line": line.group(0),
+        }
+        PROGRAM.append(element)
+    return PROGRAM
+
 

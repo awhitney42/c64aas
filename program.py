@@ -2,8 +2,10 @@
 
 from datetime import datetime
 from flask import abort
+from flask import request
 import json
 from ctypes import cdll
+import basify
 
 lib = cdll.LoadLibrary('../cbmbasic/libcbmbasic.so')
 
@@ -50,21 +52,29 @@ def create(program):
 
     PROGRAM = []
 
-    for l in program:
-        line = l.get("line")
-        input = l.get("input")
+    if (request.content_type == 'text/plain'):
 
-        if input:
-            element = {
-                "input": input,
-                 "line": line,
-                 }
-            PROGRAM.append(element)
-        else:
-            abort(
-                406,
-    			"Invalid program request",
-        )
+        program_string = program.decode('utf-8')
+        PROGRAM = basify.bas2obj(program_string)
+
+    else:
+
+        for l in program:
+
+            line = l.get("line")
+            input = l.get("input")
+    
+            if input:
+                element = {
+                    "input": input,
+                     "line": line,
+                     }
+                PROGRAM.append(element)
+            else:
+                abort(
+                    406,
+        			"Invalid program request",
+            )
 
     with open(filename, "w") as file:
         file.write(json.dumps(PROGRAM)) # write PROGRAM to file
