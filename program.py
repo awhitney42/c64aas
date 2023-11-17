@@ -5,7 +5,9 @@ from flask import abort
 from flask import request
 import json
 from ctypes import cdll
+import re
 import basify
+from unidecode import unidecode
 
 lib = cdll.LoadLibrary('../cbmbasic/libcbmbasic.so')
 
@@ -52,18 +54,36 @@ def create(program):
 
     PROGRAM = []
 
-    if (request.content_type == 'text/plain'):
+    if (request.content_type.find("text/plain") >=0):
 
-        program_string = program.decode('utf-8')
+        program_string = program.decode('utf-8').replace('\\"','"').replace('\\n','\n')
+
+        whitelist = set('µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ')
+        program_string = ''.join(c if c in whitelist else unidecode(c) for c in program_string)
+
+        # If entire program string is lowercase, then change it to uppercase to make CBMBASIC happy.
+        if (program_string.islower()):
+            program_string = program_string.upper()
+
         PROGRAM = basify.bas2obj(program_string)
 
     else:
+
+        program_string = json.dumps(program)
+        program_is_lower = False
+
+        # If entire program string is lowercase, then change it to uppercase to make CBMBASIC happy.
+        if (program_string.islower()):
+           program_is_lower = True 
 
         for l in program:
 
             line = l.get("line")
             input = l.get("input")
-    
+   
+            if (program_is_lower):
+                input = input.upper()
+
             if input:
                 element = {
                     "input": input,

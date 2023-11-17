@@ -1,16 +1,147 @@
-<!-- templates/home.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>C64AAS Flask REST API</title>
-</head>
-<body>
-    <h1>
-	    C64 As A Service
-    </h1>
-    <p><a href="api/ui/">API</a>
-</body>
-</html>
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ASCII">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel='shortcut icon' type='image/png' href="https://adamwhitney.net/wp-content/uploads/2021/10/cropped-molly-32x32.png">
+    <title>C64aaS</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static',filename='css/mdb.min.css') }}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <header>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark black scrolling-navbar">
+            <a class="navbar-brand" href="#"><strong><code>C64aaS</code></strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+			<a class="nav-link" href="api/ui/" target="_newwin">Documentation</a>
+		    <li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#basicExampleModal">About</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/awhitney42/c64aas"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/K0FFY_Radio"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <!--Main Navigation-->
+    <main>
+        <!-- Start your project here-->
+        <div class="container-fluid">
+            <div class="row mt-5 pt-5">
+                <div class="col">
+                    <div class="form-group pink-border-focus">
+                        <label for="exampleFormControlTextarea5"></label>
+                        <textarea class="form-control text-monospace c64-style" id="in_form" rows="20" placeholder="Enter a Commodore BASIC program here.
+In case of JSON input, toggle the switch below before hitting 'RUN' button." style="font-size: 0.8rem"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group pink-border-focus">
+                        <label for="exampleFormControlTextarea5"></label>
+                        <textarea class="form-control text-monospace c64-style" id="out_form" rows="20"
+                            placeholder="View program output here." style="font-size: 0.8rem"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Default switch -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="json_switch">
+                        <label class="custom-control-label" for="json_switch">JSON</label>
+                    </div>
+                    <button type="button" id="run_btn" class="btn c64-style">RUN</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/mdb.min.js') }}"></script>
+    <!-- C64aaS JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/c64aas.js') }}"></script>
+</body>
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">About C64aaS</h4>
+            </div>
+            <div class="modal-body">
+                <p><code>C64aas</code> is a web service that brings the unlimited power of Commodore BASIC to the modern web!</p>
+                <p>Brought to you by:</p>
+                <!-- Card deck -->
+                <div class="card-deck">
+
+                    <!-- Card -->
+                    <div class="card mb-6">
+
+                        <!--Card image-->
+                        <div class="view overlay">
+                            <img class="card-img-top"
+                                src="https://pbs.twimg.com/profile_images/1564001613286707200/vzRMuFYc_400x400.jpg"
+                                alt="Adam">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <!--Title-->
+                            <h4 class="card-title">Adam Whitney</h4>
+                            <!--Text-->
+                            <p class="card-text">Author of many not-so-popular tools and libraries.
+                                <code>C64aaS</code> is one of them.</p>
+                            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                            <a class="px-2 fa-lg tw-ic" href="https://twitter.com/K0FFY_Radio"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="px-2 fa-lg fb-ic" href="https://github.com/awhitney42/c64aas"><i
+                                    class="fab fa-github"></i></a>
+
+                        </div>
+
+                    </div>
+                    <!-- Card -->
+                </div>
+                <!-- Card deck -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

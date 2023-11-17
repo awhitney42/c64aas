@@ -24,7 +24,7 @@ def json2bas():
 def bas2obj(program):
 
     PROGRAM = []
-    program_lines = program.splitlines()
+    program_lines = program.splitlines(True)
     for l in program_lines:
         line = re.search(r"\d+ ", l)
         input = re.sub(r"\d+ ", '', l)

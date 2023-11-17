@@ -47,7 +47,7 @@ def read_all():
     output_lines = output_basic.splitlines()
     output_json = json.dumps(output_lines)
 
-    if (request.headers.get('accept') == "text/plain"):
+    if (request.headers.get('accept').find("text/plain") >=0):
         return output_basic
     else:
         return output_json
