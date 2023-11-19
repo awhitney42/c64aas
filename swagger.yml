@@ -54,6 +54,13 @@ paths:
       responses:
         "200":
           description: "Successfully read program LISTing."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgramList'
+            text/plain:
+              schema:
+                type: "string"
     post:
       operationId: "program.create"
       tags:

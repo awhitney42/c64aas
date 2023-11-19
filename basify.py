@@ -26,13 +26,15 @@ def bas2obj(program):
     PROGRAM = []
     program_lines = program.splitlines(True)
     for l in program_lines:
-        line = re.search(r"\d+ ", l)
-        input = re.sub(r"\d+ ", '', l)
-        element = {
-        	"input": input,
-        	"line": line.group(0),
-        }
-        PROGRAM.append(element)
+        l = re.sub(r"\n$",'', l).strip()
+        if (l):
+            line= re.search(r"\d+ ", l)
+            input = re.sub(r"^\d+ ", '', l)
+            element = {
+            	"input": input,
+            	"line": int(line.group(0).strip()),
+            }
+            PROGRAM.append(element)
     return PROGRAM
 
 

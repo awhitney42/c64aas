@@ -50,4 +50,4 @@ def read_all():
     if (request.headers.get('accept').find("text/plain") >=0):
         return output_basic
     else:
-        return output_json
+        return output_json, 200, {'Content-Type': 'application/json'}

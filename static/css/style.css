@@ -1,0 +1,32 @@
+.pink-border-focus .form-control:focus {
+    border: 1px solid #e83e8c;
+    box-shadow: 0 0 0 0.2rem rgba(195, 74, 169, 0.25);
+}
+.c64-style {
+    background-color: rgb(0,58,255);
+    color: rgb(255,255,255);
+}
+.form-control::placeholder {
+    background-color: rgb(0,58,255);
+    color: rgb(255,255,255);
+}
+.form-control:focus {
+    background-color: rgb(0,58,255);
+    color: rgb(255,255,255);
+}
+textarea {
+    background-color: rgb(0,58,255);
+    color: rgb(255,255,255);
+}
+.btn {
+    background-color: rgb(0,58,255);
+    color: rgb(255,255,255)
+}
+.btn:hover {
+    background-color: rgb(0,58,255);
+    color:yellow;
+}
+.btn:focus {
+    background-color: rgb(0,58,255);
+    color:yellow;
+}
