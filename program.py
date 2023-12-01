@@ -33,7 +33,16 @@ def read_all():
     with open(filename, "r+") as file:
         PROGRAM = json.load(file) 
 
-    return PROGRAM
+    output_basic = ""
+    for l in PROGRAM:
+        line = l.get("line")
+        input = l.get("input")
+        output_basic += (str(line) + " " + input + "\n")
+
+    if (request.headers.get('accept').find("text/plain") >=0):
+        return output_basic
+    else:
+        return PROGRAM, 200, {'Content-Type': 'application/json'}
 
 def read_one(line):
 
@@ -79,7 +88,7 @@ def create(program):
         for l in program:
 
             line = l.get("line")
-            input = l.get("input")
+            input = l.get("input").strip()
    
             if (program_is_lower):
                 input = input.upper()
