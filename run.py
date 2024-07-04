@@ -5,6 +5,7 @@ from flask import abort
 from flask import request
 import subprocess
 import json
+import codecs
 import basify
 import multiprocessing as mp
 from ctypes import *
@@ -39,10 +40,11 @@ def read_all():
     #for p in ps:
     #    p.start()
 
-    process=subprocess.Popen(['timeout' ,'10', 'cbmbasic', 'program.bas'], stdout=subprocess.PIPE)
+    process=subprocess.Popen(['timeout' ,'10', '/usr/local/bin/cbmbasic', 'program.bas'], stdout=subprocess.PIPE,env={'PYTHONIOENCODING': 'utf-8'})
     out,err = process.communicate()
 
-    output_basic = str(out, 'UTF-8')
+    output_basic = codecs.decode(out, 'utf-8')
+    #output_basic = str(u_string, 'UTF-8')
 
     output_lines = output_basic.splitlines()
     output_json = json.dumps(output_lines)

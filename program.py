@@ -73,7 +73,7 @@ def create(program):
         # If entire program string is lowercase, then change it to uppercase to make CBMBASIC happy.
         if (program_string.islower()):
             program_string = program_string.upper()
-
+        print (program_string)
         PROGRAM = basify.bas2obj(program_string)
 
     else:
