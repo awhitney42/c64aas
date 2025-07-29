@@ -8,8 +8,10 @@ from ctypes import cdll
 import re
 import basify
 from unidecode import unidecode
+import os
 
-lib = cdll.LoadLibrary('../cbmbasic/libcbmbasic.so')
+home_variable = os.environ['HOME']
+lib = cdll.LoadLibrary(f"{home_variable}/git/cbmbasic/libcbmbasic.so")
 
 PROGRAM = [
             {
@@ -22,7 +24,7 @@ PROGRAM = [
             },
           ]
 
-filename = "program.json"
+filename = f"{home_variable}/git/c64aas/program.json"
 
 def get_timestamp():
 

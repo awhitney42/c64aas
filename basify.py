@@ -2,9 +2,12 @@
 
 import json
 import re
+import os
 
-json_filename = "program.json"
-bas_filename = "program.bas"
+home_variable = os.environ['HOME']
+
+json_filename = f"{home_variable}/git/c64aas/program.json"
+bas_filename = f"{home_variable}/git/c64aas/program.bas"
 
 def json2bas():
 

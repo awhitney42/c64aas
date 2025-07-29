@@ -1,1 +1,1 @@
-[{"input": "FOR I=1 TO 10", "line": 10}, {"input": "PRINT \"HELLO WORLD\"", "line": 20}, {"input": "NEXT I", "line": 30}]
+[{"input": "FOR I=1 TO 10", "line": 10}, {"input": "PRINT \"HELLO WORLD\"", "line": 20}, {"input": "NEXT I", "line": 30}, {"input": "REM PRINT CHR$(205.5+RND(1));:GOTO 10", "line": 40}]

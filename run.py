@@ -3,6 +3,7 @@
 from datetime import datetime
 from flask import abort
 from flask import request
+import os
 import subprocess
 import json
 import codecs
@@ -10,8 +11,10 @@ import basify
 import multiprocessing as mp
 from ctypes import *
 
+home_variable = os.environ['HOME']
+
 # Load the shared library for cbmbasic
-#lib = cdll.LoadLibrary('../cbmbasic/libcbmbasic.so')
+#lib = cdll.LoadLibrary(f"{home_variable}/git/cbmbasic/libcbmbasic.so
 #lib.main.restype = c_int
 #lib.main.argtypes = c_int,POINTER(c_char_p)
 
@@ -40,7 +43,7 @@ def read_all():
     #for p in ps:
     #    p.start()
 
-    process=subprocess.Popen(['timeout' ,'10', '/usr/local/bin/cbmbasic', 'program.bas'], stdout=subprocess.PIPE,env={'PYTHONIOENCODING': 'utf-8'})
+    process=subprocess.Popen(['timeout' ,'5', '/usr/local/bin/cbmbasic', f"{home_variable}/git/c64aas/program.bas"], stdout=subprocess.PIPE,env={'PYTHONIOENCODING': 'utf-8'})
     out,err = process.communicate()
 
     output_basic = codecs.decode(out, 'utf-8')
